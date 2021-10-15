@@ -10,6 +10,7 @@ import {
   UserName,
   UserWrapper,
   Icon,
+  HighlightCards,
 } from "./styles";
 
 import HighlightCard from "../../components/HighlightCard";
@@ -36,7 +37,12 @@ export default function Dashboard() {
         </UserWrapper>
       </Header>
 
-      <HighlightCard />
+      <HighlightCards>
+        <HighlightCard />
+        <HighlightCard />
+        <HighlightCard />
+        <HighlightCard />
+      </HighlightCards>
     </Container>
   );
 }
