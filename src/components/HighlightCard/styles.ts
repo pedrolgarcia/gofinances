@@ -20,6 +20,7 @@ export const Container = styled.View<TypeProps>`
 
 export const Header = styled.View`
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 `;
 
