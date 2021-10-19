@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "react-native";
+import { useForm } from "react-hook-form";
 
 import {
   Container,
@@ -10,14 +11,21 @@ import {
   TransactionsTypes,
 } from "./styles";
 
-import Input from "../../components/Form/Input";
 import Button from "../../components/Form/Button";
 import TransactionTypeButton from "../../components/Form/TransactionTypeButton";
 import CategorySelectButton from "../../components/Form/CategorySelectButton";
+import InputForm from "../../components/Form/InputForm";
 
 import CategorySelect from "../CategorySelect";
 
+interface FormData {
+  name: string;
+  amount: string;
+}
+
 function Register() {
+  const { control, handleSubmit } = useForm();
+
   const [category, setCategory] = useState({
     key: "category",
     name: "categoria",
@@ -38,6 +46,17 @@ function Register() {
     setCategoryModalOpen(false);
   }
 
+  function handleRegister(form: FormData) {
+    const data = {
+      name: form.name,
+      amount: form.amount,
+      transactionType,
+      category: category.key,
+    };
+
+    console.log(data);
+  }
+
   return (
     <Container>
       <Header>
@@ -46,8 +65,8 @@ function Register() {
 
       <Form>
         <Fields>
-          <Input placeholder="Nome" />
-          <Input placeholder="Preço" />
+          <InputForm name="name" control={control} placeholder="Nome" />
+          <InputForm name="amount" control={control} placeholder="Preço" />
 
           <TransactionsTypes>
             <TransactionTypeButton
@@ -69,7 +88,7 @@ function Register() {
             onPress={handleOpenSelectCategoryModal}
           />
         </Fields>
-        <Button title="Enviar" />
+        <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
       </Form>
 
       <Modal
