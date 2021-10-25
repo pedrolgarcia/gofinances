@@ -1,4 +1,5 @@
 import React from "react";
+import { Platform } from "react-native";
 import { useTheme } from "styled-components";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { getBottomSpace } from "react-native-iphone-x-helper";
@@ -7,9 +8,18 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import Dashboard from "../screens/Dashboard";
 import Register from "../screens/Register";
-import { Platform } from "react-native";
 
 const { Navigator, Screen } = createBottomTabNavigator();
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList {
+      Listagem: undefined;
+      Cadastro: undefined;
+      Resumo: undefined;
+    }
+  }
+}
 
 function AppRoutes() {
   const theme = useTheme();
