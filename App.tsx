@@ -19,6 +19,8 @@ import theme from "./src/global/styles/theme";
 import AppRoutes from "./src/routes/app.routes";
 import SignIn from "./src/screens/SignIn";
 
+import { AuthProvider } from "./src/hooks/auth";
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -39,7 +41,9 @@ export default function App() {
           backgroundColor="transparent"
         />
         {/* <AppRoutes /> */}
-        <SignIn />
+        <AuthProvider>
+          <SignIn />
+        </AuthProvider>
       </NavigationContainer>
     </ThemeProvider>
   );

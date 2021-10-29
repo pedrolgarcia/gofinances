@@ -1,12 +1,5 @@
 import React from "react";
-
-import { Text } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
-
-import AppleSvg from "../../assets/apple.svg";
-import GoogleSvg from "../../assets/google.svg";
-import LogoSvg from "../../assets/logo.svg";
-import SignInSocialButton from "../../components/SignInSocialButton";
 
 import {
   Container,
@@ -18,7 +11,18 @@ import {
   FooterWrapper,
 } from "./styles";
 
+import SignInSocialButton from "../../components/SignInSocialButton";
+
+import AppleSvg from "../../assets/apple.svg";
+import GoogleSvg from "../../assets/google.svg";
+import LogoSvg from "../../assets/logo.svg";
+
+import { useAuth } from "../../hooks/auth";
+
 function SignIn() {
+  const { user } = useAuth();
+  console.log(user);
+
   return (
     <Container>
       <Header>
