@@ -47,7 +47,7 @@ interface HighlightData {
 
 export default function Dashboard() {
   const theme = useTheme();
-  const { signOut } = useAuth();
+  const { user, signOut } = useAuth();
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -180,13 +180,13 @@ export default function Dashboard() {
               <UserInfo>
                 <Photo
                   source={{
-                    uri: "https://avatars.githubusercontent.com/u/29722492?v=4",
+                    uri: user.photo,
                   }}
                 />
 
                 <User>
                   <UserGreeting>Olá,</UserGreeting>
-                  <UserName>Pedro</UserName>
+                  <UserName>{user.name}</UserName>
                 </User>
               </UserInfo>
 
