@@ -56,7 +56,7 @@ export default function Dashboard() {
     {} as HighlightData
   );
 
-  const dataKey = "@gofinances:transactions";
+  const dataKey = `@gofinances:transactions_user:${user.id}`;
 
   function getLastTransactionDate(
     collection: DataListProps[],

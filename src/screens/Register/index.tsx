@@ -23,6 +23,8 @@ import InputForm from "../../components/Form/InputForm";
 
 import CategorySelect from "../CategorySelect";
 
+import { useAuth } from "../../hooks/auth";
+
 interface FormData {
   name: string;
   amount: string;
@@ -38,6 +40,8 @@ const schema = Yup.object().shape({
 
 function Register() {
   const navigation = useNavigation();
+
+  const { user } = useAuth();
 
   const {
     control,
@@ -56,7 +60,7 @@ function Register() {
   const [transactionType, setTransactionType] = useState("");
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
 
-  const dataKey = "@gofinances:transactions";
+  const dataKey = `@gofinances:transactions_user:${user.id}`;
 
   useEffect(() => {
     async function loadData() {
@@ -66,11 +70,6 @@ function Register() {
     }
 
     loadData();
-
-    // async function removeAll() {
-    //   await AsyncStorage.removeItem(dataKey);
-    // }
-    // removeAll();
   }, []);
 
   function handleTransactionTypeSelect(type: "positive" | "negative") {

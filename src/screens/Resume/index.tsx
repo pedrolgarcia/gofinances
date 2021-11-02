@@ -25,6 +25,7 @@ import {
 import HistoryCard from "../../components/HistoryCard";
 
 import { categories } from "../../utils/categories";
+import { useAuth } from "../../hooks/auth";
 
 interface TransactionData {
   type: "positive" | "negative";
@@ -46,6 +47,8 @@ interface CategoryData {
 function Resume() {
   const theme = useTheme();
 
+  const { user } = useAuth();
+
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [totalBycategories, setTotalByCategories] = useState<CategoryData[]>(
@@ -63,7 +66,7 @@ function Resume() {
   async function loadData() {
     setIsLoading(true);
 
-    const dataKey = "@gofinances:transactions";
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted = response ? JSON.parse(response) : [];
 
