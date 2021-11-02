@@ -28,6 +28,8 @@ import {
   TransactionCardProps,
 } from "../../components/TransactionCard";
 
+import { useAuth } from "../../hooks/auth";
+
 export interface DataListProps extends TransactionCardProps {
   id: string;
 }
@@ -45,6 +47,7 @@ interface HighlightData {
 
 export default function Dashboard() {
   const theme = useTheme();
+  const { signOut } = useAuth();
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -187,7 +190,7 @@ export default function Dashboard() {
                 </User>
               </UserInfo>
 
-              <LogoutButton onPress={() => {}}>
+              <LogoutButton onPress={() => signOut()}>
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>
