@@ -60,13 +60,11 @@ function Register() {
   const [transactionType, setTransactionType] = useState("");
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
 
-  const dataKey = `@gofinances:transactions_user:${user.id}`;
+  const dataKey = `@gofinances:transactions_user:${user?.id}`;
 
   useEffect(() => {
     async function loadData() {
       let transactions = await AsyncStorage.getItem(dataKey);
-
-      console.log(JSON.parse(transactions!));
     }
 
     loadData();
@@ -166,6 +164,7 @@ function Register() {
             </TransactionsTypes>
 
             <CategorySelectButton
+              testID="button-category"
               title={category.name}
               onPress={handleOpenSelectCategoryModal}
             />
@@ -174,6 +173,7 @@ function Register() {
         </Form>
 
         <Modal
+          testID="modal-category"
           visible={categoryModalOpen}
           animationType="slide"
           statusBarTranslucent={true}
